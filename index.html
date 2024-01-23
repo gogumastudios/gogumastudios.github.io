@@ -27,31 +27,67 @@
                 <h2>Contact</h2>
                 <p>Have a feedback or simply want to say hi? Drop us a line!</p>
             </div>
-            <form name="gform" id="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSe8sTxGFftzP4EkV8LOIYqcIpW-_sM1bXFehtbncz3WeHlpUA/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
-                <div class="row">
-                    <div class="left-col">
-                        <label>Name</label>
-                        <input type="text" name="entry.1768286814" id="entry.1768286814" required>
+            <div id="gformContainer">
+                <form name="gform" id="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSe8sTxGFftzP4EkV8LOIYqcIpW-_sM1bXFehtbncz3WeHlpUA/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
+                    <div class="row">
+                        <div class="left-col">
+                            <label>Name</label>
+                            <input type="text" name="entry.1768286814" id="entry.1768286814" required>
+                        </div>
+                        <div class="right-col">
+                            <label>Email</label>
+                            <input type="email" name="entry.335609064" id="entry.335609064" required>
+                        </div>
                     </div>
-                    <div class="right-col">
-                        <label>Email</label>
-                        <input type="email" name="entry.335609064" id="entry.335609064" required>
+                    <div class="row">
+                        <label>Message</label>
+                        <textarea name="entry.462183822" id="entry.462183822" required></textarea>
                     </div>
-                </div>
-                <div class="row">
-                    <label>Message</label>
-                    <textarea name="entry.462183822" id="entry.462183822" required></textarea>
-                </div>
-                <div class="row">
-                    <button class="form-submit" type="submit">Submit</button>
-                </div>
-            </form>
+                    <div class="row">
+                        <button class="form-submit" type="submit">Submit</button>
+                    </div>
+                </form>
+                <div id="submittedForm">Your submission has been processed...</div>
+            </div>
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
         </div>
 
         <footer>© Goguma Studios</footer>
     </body>
+    <script type="text/javascript">var submitted=false;</script>
+    <script type="text/javascript">
+        const form = document.getElementById('gform');
+        const submittedMessage = document.getElementById('submittedForm');
+        
+        function onSubmit(event) {
+            form.classList.toggle("hide");
+            submittedMessage.classList.toggle("show");
+
+            setTimeout(() => { form.reset(); }, 500);
+        }
+        form.addEventListener("submit", onSubmit);
+    </script>
     <style>
+        #gform { transition: opacity 0.5s; }
+        #gform.hide {
+            opacity: 0;
+        }
+
+        #gformContainer { position: relative; }
+        #submittedForm { 
+            position: absolute; 
+            top: 50%; 
+            left: 0; 
+            width: 100%;
+            text-align: center;
+            font-size: 1.3rem;
+            transition: opacity 0.3s 0.4s;
+            opacity: 0;
+        }
+        #submittedForm.show {
+            opacity: 1;
+        }
+
         * {
             box-sizing: border-box;
         }
