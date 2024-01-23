@@ -19,11 +19,45 @@
                     We are based in Vancouver, BC.
                 </div>
             </div>
+            <div class="chevron bottom" style="position: absolute; bottom: 1rem; margin: 0 auto;"></div>
         </div>
+        
+        <div id="form">
+            <div class="row">
+                <h2>Contact</h2>
+                <p>Have a feedback or simply want to say hi? Drop us a line!</p>
+            </div>
+            <form name="gform" id="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSe8sTxGFftzP4EkV8LOIYqcIpW-_sM1bXFehtbncz3WeHlpUA/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
+                <div class="row">
+                    <div class="left-col">
+                        <label>Name</label>
+                        <input type="text" name="entry.1768286814" id="entry.1768286814" required>
+                    </div>
+                    <div class="right-col">
+                        <label>Email</label>
+                        <input type="email" name="entry.335609064" id="entry.335609064" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Message</label>
+                    <textarea name="entry.462183822" id="entry.462183822" required></textarea>
+                </div>
+                <div class="row">
+                    <button class="form-submit" type="submit">Submit</button>
+                </div>
+            </form>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+        </div>
+
         <footer>© Goguma Studios</footer>
     </body>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            width: 100%;
             margin: 0;
             background-color: bisque;
             color: coral;
@@ -34,7 +68,7 @@
             display: flex;
             justify-content: center;  /* center p horizontally */
             align-items: center;      /* center p vertically */
-            height: 96vh;
+            height: 100vh;
         }
 
         #hero .title {
@@ -49,10 +83,98 @@
             line-height: 1.2rem;
         }
 
+        #form {
+            width: 64%;
+            margin: 32px auto;
+            max-width: 1024px;
+        }
+
+        .row {
+            width: 100%;
+            padding: 12px 0;
+        }
+
+        .left-col {
+            float: left;
+            width: 50%;
+            padding-right: 12px;
+        }
+
+        .right-col {
+            float: right;
+            width: 50%;
+            padding-left: 12px;
+        }
+
+        #form label {
+            display: block;
+            font-size: 1.2rem;
+        }
+
+        #form input[type=text], 
+        #form input[type=email], 
+        #form textarea {
+            margin-top: 8px;
+            width: 100%;
+            height: 32px;
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 8px;
+            /* border-color: rgb(210, 95, 57); */
+            border-color: rgb(240, 110, 66);
+            /* border-color: coral; */
+            background-color: #fff4e8;
+        }
+
+        #form textarea {
+            height: 160px;
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background-color: coral;
+            border-style: none;
+            border-radius: 8px;
+            font-size: medium;
+            font-weight: 500;
+            color: white;
+            padding: 12px 48px;
+        }
+
+        .row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .row:has(> .form-submit) {
+            text-align: center;
+        }
+
         footer {
             width: 92%;
-            margin: 0 auto;
+            margin: 20px auto;
             font-size: small;
+        }
+
+        .chevron::before {
+            border-style: solid;
+            border-width: 0.25em 0.25em 0 0;
+            content: '';
+            display: inline-block;
+            height: 0.45em;
+            left: 0.15em;
+            position: relative;
+            top: 0.15em;
+            transform: scaleX(1.5) rotate(-45deg);
+            vertical-align: top;
+            width: 0.45em;
+        }
+
+        .chevron.bottom:before {
+	        top: 0;
+	        transform: scaleX(1.4) rotate(135deg);
         }
     </style>
 </html>
